@@ -54,8 +54,9 @@ Yarn是Facebook提供的替代npm的工具，可以加速node模块的下载。R
 
 >重要设置系统变量：
 
-	classpath=C:\Program Files\Java\jdk1.8.0_112\lib\tools.jar
-	path = ...;C:\Program Files\Java\jdk1.8.0_112\lib
+	JAVA_HOME = C:\Program Files\Java\jdk1.8.0_112;
+	classpath = %JAVA_HOME%\lib\tools.jar;
+	path = ...;%JAVA_HOME%\lib;
 
 > 测试是否安装成功：
 
@@ -163,7 +164,9 @@ React Native目前需要[Android Studio](developer.android.com/sdk/index.html)2.
 
 ![genymotion](img/14.png)
 
-再次点击`Genymotion Device Manager`图标，如果没有安装模拟器就点`New...`安装一个。然后选择一个手机并点击`Start...`即可。但只能有一个模拟器处理`On`状态。
+再次点击`Genymotion Device Manager`图标，接着安装模拟器点击`New...`然后会启动Genymotion来安装。然后选择一个手机并点击`Start...`即可。但只能有一个模拟器处理`On`状态。
+
+> 重要提示：必须从插件里打开安装模拟器，否则会用不了。同样开启模拟器也必须从`Android Studio`插件里打开`genymotion`。因为只有这样模拟器才会自动获取IP和端口。
 
 ### 8、测试安装###
 
@@ -193,9 +196,9 @@ ReactNative项目名称规范是首字母大写，执行npm命令并进入项目
 
 ## 问题解决 ##
 
-**Q:** build成功后真机测试是红色，提示没有连接服务器js Server
+**Q：** build成功后真机测试是红色，提示没有连接服务器js Server
 
-**A:** 最简单办法是执行cmd命令：
+**A：** 最简单办法是执行cmd命令：
 
 	adb reverse tcp:8081 tcp:8081
 
@@ -204,11 +207,28 @@ ReactNative项目名称规范是首字母大写，执行npm命令并进入项目
 
 **Q:** 运行react-native run-android时报错，报错信息中含有`Could not find tools.jar`等字样
 
-**A:** 请在系统变量中添加classpath，指向jdk中的tools.jar，并在系统变量`path`中增加`C:\Program Files\Java\jdk1.8.0_112\lib`。
+**A：** 请留意上面设置系统变量classpath，path和JAVA_HOME。
+
+
+**Q：** 出现`com.android.builder.testing.api.DeviceException: Timeout getting device list.`字样错误怎么办？
+
+**A：** 只要是模拟器问题，先考虑从`Android Studio`模拟器插件里，删除模拟器后重新安装一个（重新安装很快的）。
+
+
+**Q：** 出现`cannot bind to 127.0.0.1:5037`字样错误怎么办？
+
+**A：** 一般是5037端口被占用。想办法关闭进程。或者让相关程序不要随机启动。
+
+![设置sdk](img/16.png)
+
+比如360手机助力就无法杀进程。
+
+
 
 [参阅更多问题解决方法](http://bbs.reactnative.cn/topic/130/%E6%96%B0%E6%89%8B%E6%8F%90%E9%97%AE%E5%89%8D%E5%85%88%E6%9D%A5%E8%BF%99%E9%87%8C%E7%9C%8B%E7%9C%8B-react-native%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
 
-### Android安装包制作签名Android安装包制作签名 ###
+
+## Android安装包制作签名 ##
 
 Android SDK 1.6 最主要改变为模拟器或真机可用系统自动创建的调试签名证书(debug.keystore), 但可发布的安装程序必须要先创建自签名证书 包括密钥库 keystore 和私钥 key alias。
 
