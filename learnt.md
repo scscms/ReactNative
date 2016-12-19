@@ -25,7 +25,7 @@
 
 
 //继续在 http://www.jianshu.com/search?q=react+native&page=1&type=notes 上搜索资料
-
+//继续搜索 https://github.com/reactnativecn/react-native-guide
 
 ### 二、学习源码收集 ###
 ----

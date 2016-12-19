@@ -166,7 +166,7 @@ React Native目前需要[Android Studio](developer.android.com/sdk/index.html)2.
 
 再次点击`Genymotion Device Manager`图标，接着安装模拟器点击`New...`然后会启动Genymotion来安装。然后选择一个手机并点击`Start...`即可。但只能有一个模拟器处理`On`状态。
 
-> 重要提示：必须从插件里打开安装模拟器，否则会用不了。同样开启模拟器也必须从`Android Studio`插件里打开`genymotion`。因为只有这样模拟器才会自动获取IP和端口。
+> 重要提示：必须从插件里打开安装模拟器，否则会用不了。
 
 ### 8、测试安装###
 
@@ -177,6 +177,7 @@ ReactNative项目名称规范是首字母大写，执行npm命令并进入项目
 	$ react-native run-android
 
 >第一次执行此命令需要下载比较多的模块，请耐心等待。
+>--daemon --parallel --offline
 
 执行之前把真机或者模拟器启用。有个常见的问题是在你运行`react-native run-android`命令后，Packager可能不会自动运行。此时你可以手动启动它，另开启一个npm命令窗口执行：
 
@@ -209,11 +210,13 @@ ReactNative项目名称规范是首字母大写，执行npm命令并进入项目
 
 **A：** 请留意上面设置系统变量classpath，path和JAVA_HOME。
 
-
 **Q：** 出现`com.android.builder.testing.api.DeviceException: Timeout getting device list.`字样错误怎么办？
 
-**A：** 只要是模拟器问题，先考虑从`Android Studio`模拟器插件里，删除模拟器后重新安装一个（重新安装很快的）。
+**A：** 只要是模拟器问题，可先使用命令`adb devices`查看是否有可用的模拟器。如果没有请重新连接真机或者从`Android Studio`模拟器插件里，删除模拟器后重新安装一个（重新安装很快的）。
 
+**Q：** 出现`'adb' 不是内部或外部命令`字样错误怎么办？
+
+**A：** 设置系统变量`path`添加上`adb.exe`文件路径，比如`C:\Users\shine\AppData\Local\Android\sdk\platform-tools`。
 
 **Q：** 出现`cannot bind to 127.0.0.1:5037`字样错误怎么办？
 
